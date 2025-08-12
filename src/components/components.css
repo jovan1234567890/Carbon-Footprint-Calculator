@@ -1,0 +1,279 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Daftarkan properti custom agar bisa dianimasikan sebagai angle */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.gradient-text {
+  /* Gradien conic yang berputar dari sudut var --angle */
+  background: conic-gradient(
+    from var(--angle),
+    #0E7C69,
+    #5DB25B,
+    #58b982,
+    #327b6f,
+    #cae95a,
+    #0E7C69
+  );
+
+ 
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  /* Jadikan fill teks transparan agar background terlihat lewat glyph */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+ 
+  animation: rotate-gradient 9s linear infinite;
+  display: inline-block; 
+}
+
+@keyframes rotate-gradient {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 45px 50px;
+  background-color: white;
+
+  /* Bayangan di bawah navbar */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  /* Opsional: agar navbar tetap di atas saat scroll */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2e7d32; /* Hijau daun */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-links {
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #2e7d32;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #1b5e20;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes slidePulse {
+  0% {
+    transform: translateX(0) scale(1);
+    background-position: 0% 50%;
+  }
+  50% {
+    transform: translateX(5px) scale(1.05);
+    background-position: 100% 50%;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    background-position: 0% 50%;
+  }
+}
+
+.carbon-button {
+  background: linear-gradient(90deg, #2f855a, #8dbda3, #2f855a);
+  background-size: 200% 200%;
+  color: white;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.3s ease;
+
+
+  animation: slidePulse 3s infinite ease-in-out;
+}
+
+.carbon-button:hover {
+  transform: translateX(10px) scale(1.06);
+  animation: none;
+  background: #92a694;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  margin-top: -350px;
+  background-color: #ffffff;
+}
+
+.card {
+  width: 15rem;
+  height: 13rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  clip-path: polygon(0 0, calc(100% - 50px in) 0, 100% 50px, 100% 100%, 50px 100%, 0 calc(100% - 50px));
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+
+.card.gradient {
+  text-align: left;
+  background: radial-gradient(circle at center, #3E8E73, #B9D8D2);
+  color: #ffffff;
+}
+
+
+.card.green {
+  background-color: #B9D8D2;
+  color: #106040;
+}
+
+.card-value {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+.card-unit {
+  font-size: 0.75rem;
+  font-weight: normal;
+  vertical-align: super;
+  margin-left: 0.25rem;
+  margin-top: 2.6rem;
+}
+
+.card-description {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  color: inherit;
+}
+
+
+/* You can customize these styles according to your theme */
+
+.bg-white {
+  background-color: white;
+}
+
+.text-gray-800 {
+  color: #2d3748; /* Color for the text */
+}
+
+.text-green-700 {
+  color: #2f855a; /* Dark green for headings */
+}
+
+.bg-green-600 {
+  background-color: #38a169; /* Green for buttons */
+}
+
+.bg-green-200 {
+  background-color: #c6f6d5; /* Light green for info boxes */
+}
+
+.hover\:bg-green-700:hover {
+  background-color: #2f855a; /* Darker green for button hover */
+}
+
+.rounded-lg {
+  border-radius: 0.5rem; /* Rounded corners */
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.p-4 {
+  padding: 1rem; /* Padding for boxes */
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem; /* Vertical padding */
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; /* Horizontal padding */
+}
+
+/* Additional Tailwind CSS styles can be added here */
